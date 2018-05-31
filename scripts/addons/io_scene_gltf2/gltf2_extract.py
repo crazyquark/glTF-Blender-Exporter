@@ -71,14 +71,7 @@ def convert_swizzle_rotation(rot, export_settings):
     'w' is still at first position.
     """
     if export_settings['gltf_yup']:
-        quat = mathutils.Quaternion((rot[0], rot[1], rot[2], rot[3]))
-        euler_angles = quat.to_euler()
-        euler_angles_copy = euler_angles.copy()
-
-        euler_angles.y = euler_angles_copy.z
-        euler_angles.z = -euler_angles_copy.y
-
-        return euler_angles.to_quaternion()
+        return mathutils.Quaternion((rot[0], rot[1], rot[3], -rot[2]))
     else:
         return mathutils.Quaternion((rot[0], rot[1], rot[2], rot[3]))
 
